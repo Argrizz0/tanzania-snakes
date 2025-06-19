@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Змеи Танзании - Сафари и природа Восточной Африки</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Вертикальное оглавление слева (сворачиваемое) */
+        .toc-sidebar {
+            width: 50px;
+            background-color: #2a5c45;
+            color: white;
+            padding: 20px 5px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .toc-sidebar:hover {
+            width: 250px;
+        }
+        
+        .toc-sidebar h2 {
+            color: white;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .toc-sidebar:hover h2 {
+            opacity: 1;
+            transition-delay: 0.1s;
+        }
+        
+        .toc-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .toc-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            position: relative;
+        }
+        
+        .toc-sidebar:hover .toc-list li {
+            opacity: 1;
+        }
+        
+        .toc-list a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 5px 5px 5px 10px;
+            transition: all 0.3s;
+            border-left: 2px solid transparent;
+            position: relative;
+        }
+        
+        .toc-list a:hover {
+            color: #a3d9b1;
+            border-left: 2px solid #a3d9b1;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        /* Иконка для свернутого состояния */
+        .toc-icon {
+            display: block;
+            text-align: center;
+            font-size: 24px;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+        
+        /* Основное содержимое */
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+        }
+        
+        .main-content {
+            flex: 2;
+            padding: 20px 40px;
+            max-width: 900px;
+            transition: margin-left 0.3s ease;
+        }
+        
+        /* Боковая панель с фактами */
+        .facts-sidebar {
+            flex: 1;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-left: 1px solid #ddd;
+            max-width: 300px;
+        }
+        
+        .fact-card {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .fact-card h3 {
+            color: #2a5c45;
+            margin-top: 0;
+            border-bottom: 2px solid #2a5c45;
+            padding-bottom: 5px;
+        }
+        
+        /* Главный заголовок */
+        .main-header {
+            text-align: center;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            background-color: #f0f8f0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .main-header h1 {
+            color: #2a5c45;
+            font-size: 48px;
+            margin: 0;
+            padding: 0;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .main-header p {
+            font-size: 24px;
+            color: #555;
+            margin: 20px auto 0;
+            max-width: 700px;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+        
+        /* Стили для карточек змей */
+        .snake-card {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .snake-image {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .snake-info {
+            flex: 1;
+        }
+        
+        .snake-info h3 {
+            margin-top: 0;
+            color: #2a5c45;
+            font-size: 24px;
+        }
+        
+        .scientific-name {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .danger-level {
+            display: inline-block;
+            padding: 3px 10px;
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        
+        .danger-level.high {
+            background-color: #e74c3c; /* Красный - очень опасно */
+        }
+        
+        .danger-level.medium {
+            background-color: #f39c12; /* Оранжевый - опасно */
+        }
+        
+        .danger-level.low {
+            background-color: #2ecc71; /* Зеленый - безопасно */
+        }
+        
+        /* Анимация задержки для пунктов меню */
+        .toc-list li:nth-child(1) { transition-delay: 0.05s; }
+        .toc-list li:nth-child(2) { transition-delay: 0.1s; }
+        .toc-list li:nth-child(3) { transition-delay: 0.15s; }
+        .toc-list li:nth-child(4) { transition-delay: 0.2s; }
+        .toc-list li:nth-child(5) { transition-delay: 0.25s; }
+        .toc-list li:nth-child(6) { transition-delay: 0.3s; }
+        .toc-list li:nth-child(7) { transition-delay: 0.35s; }
+        .toc-list li:nth-child(8) { transition-delay: 0.4s; }
+        
+        /* Стили для всплывающих подсказок */
+        .toc-list a::after {
+            content: attr(data-title);
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: #2a5c45;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            margin-left: 10px;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .toc-list a:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Вертикальное оглавление слева с анимацией -->
+    <nav class="toc-sidebar">
+        <div class="toc-icon">☰</div>
+        <h2>Змеи Танзании</h2>
+        <ul class="toc-list">
+            <li><a href="#black-mamba" data-title="Черная мамба">Черная мамба</a></li>
+            <li><a href="#green-mamba" data-title="Восточная зеленая мамба">Восточная зеленая мамба</a></li>
+            <li><a href="#puff-adder" data-title="Африканская шумящая гадюка">Африканская шумящая гадюка</a></li>
+            <li><a href="#boomslang" data-title="Бумеланг">Бумеланг</a></li>
+            <li><a href="#egyptian-cobra" data-title="Египетская кобра">Египетская кобра</a></li>
+            <li><a href="#spitting-cobra" data-title="Черношейная плюющаяся кобра">Черношейная плюющаяся кобра</a></li>
+            <li><a href="#python" data-title="Иероглифовый питон">Иероглифовый питон</a></li>
+            <li><a href="#brown-snake" data-title="Коричневая домовая змея">Коричневая домовая змея</a></li>
+        </ul>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <div class="content-wrapper">
+        <div class="main-content">
+            <header class="main-header">
+                <h1>Змеи Танзании</h1>
+                <p>Исследуйте удивительный мир рептилий Восточной Африки</p>
+            </header>
+
+            <!-- Разделы со змеями -->
+            <section class="snake-section">
+                <h2>Виды змей Танзании</h2>
+                
+                <!-- Черная мамба -->
+                <div class="snake-card" id="black-mamba">
+                    <img src="https://i.pinimg.com/736x/c8/50/b7/c850b7ade7f0c69981876f1c2ad046fb.jpg" alt="Черная мамба" class="snake-image">
+                    <div class="snake-info">
+                        <h3>Черная мамба <span class="scientific-name">(Dendroaspis polylepis)</span> <span class="danger-level high">Очень опасно</span></h3>
+                        <p>Черная мамба — одна из самых опасных змей Африки, известная своей скоростью и агрессивностью. Несмотря на название, ее окраска чаще оливково-серая, а "черной" ее называют из-за цвета внутренней полости рта. Эта змея может развивать скорость до 20 км/ч, что делает ее самой быстрой змеей в мире. Ее яд содержит мощные нейротоксины, которые без своевременного введения антидота приводят к летальному исходу.</p>
+                    </div>
+                </div>
+                
+                <!-- Восточная зеленая мамба -->
+                <div class="snake-card" id="green-mamba">
+                    <img src="https://wallpaper.forfun.com/fetch/b2/b29ef4ab6723988252874e8fbff9672b.jpeg?w=600" alt="Восточная зеленая мамба" class="snake-image">
+                    <div class="snake-info">
+                        <h3>Восточная зеленая мамба <span class="scientific-name">(Dendroaspis angusticeps)</span> <span class="danger-level high">Очень опасно</span></h3>
+                        <p>Восточная зеленая мамба — красивая древесная змея ярко-зеленого цвета, обитающая в прибрежных лесах Восточной Африки. В отличие от своей черной родственницы, она менее агрессивна, но ее яд также чрезвычайно опасен. Эти змеи проводят большую часть жизни на деревьях, где их окраска обеспечивает отличную маскировку среди листвы. Зеленые мамбы питаются преимущественно птицами и мелкими млекопитающими.</p>
+                    </div>
+                </div>
+                
+                <!-- Африканская шумящая гадюка -->
+                <div class="snake-card" id="puff-adder">
+                    <img src="https://i.pinimg.com/736x/a9/86/a4/a986a41ae5a768d5bfe92ca77620ac71.jpg" alt="Африканская шумящая гадюка" class="snake-image">
+                    <div class="snake-info">
+                        <h3>Африканская шумящая гадюка <span class="scientific-name">(Bitis arietans)</span> <span class="danger-level high">Очень опасно</span></h3>
+                        <p>Африканская шумящая гадюка получила свое название за характерное громкое шипение, которое она издает при угрозе. Это одна из самых распространенных ядовитых змей Африки, ответственная за большинство смертельных укусов. Ее толстое тело с геометрическим рисунком делает ее мастером маскировки в сухой траве и кустарниках. Эти гадюки ведут преимущественно ночной образ жизни и охотятся из засады.</p>
+                    </div>
+                </div>
+                
+                <!-- Бумеланг -->
+                <div class="snake-card" id="boomslang">
+                    <img src="https://www.africansnakebiteinstitute.com/wp-content/uploads/2017/09/Boomslang_20_Male_Juvenile_web-600x400.jpg" alt="Бумеланг" class="snake-image">
+                    <div class="snake-info">
+                        <h3>Бумеланг <span class="scientific-name">(Dispholidus typus)</span> <span class="danger-level medium">Опасно</span></h3>
+                        <p>Бумеланг — изящная древесная змея с большими глазами и стройным телом. Ее название происходит от африкаанс и означает "древесная змея". Самцы обычно ярко-зеленые, а самки — коричневатые. Яд бумеланга содержит мощные гемотоксины, разрушающие кровяные тельца и вызывающие внутренние кровотечения.</p>
+                    </div>
+                </div>
+                
+                <!-- Египетская кобра -->
+                <div class="snake-card" id="egyptian-cobra">
+                    <img src="https://www.shorouknews.com/uploadedimages/Other/original/20210508224857884.jpg" alt="Египетская кобра" class="snake-image">
+                    <div class="snake-info">
+                        <h3>Египетская кобра <span class="scientific-name">(Naja haje)</span> <span class="danger-level high">Очень опасно</span></h3>
+                        <p>Египетская кобра — крупная ядовитая змея, известная своим впечатляющим капюшоном, который она раскрывает при угрозе. В Танзании встречается в засушливых регионах и саваннах. Ее яд содержит мощные нейротоксины, парализующие нервную систему жертвы. В древнем Египте эта змея была символом власти и часто изображалась на головных уборах фараонов.</p>
+                    </div>
+                </div>
+                
+                <!-- Черношейная плюющаяся кобра -->
+                <div class="snake-card" id="spitting-cobra">
+                    <img src="https://www.reptilefact.com/wp-content/uploads/2016/08/Naja-Nigricollis.jpg" alt="Черношейная плюющаяся кобра" class="snake-image">
+                    <div class="snake-info">
+                        <h3>Черношейная плюющаяся кобра <span class="scientific-name">(Naja nigricollis)</span> <span class="danger-level medium">Опасно</span></h3>
+                        <p>Черношейная плюющаяся кобра получила свое название за способность выплевывать яд на расстояние до 3 метров, целясь в глаза противника. Эта защитная тактика позволяет ей избегать прямого контакта с потенциальными врагами. При попадании в глаза яд вызывает сильную боль и временную слепоту. Эти кобры распространены по всей Танзании, предпочитая саванны и редколесья.</p>
+                    </div>
+                </div>
+                
+                <!-- Иероглифовый питон -->
+                <div class="snake-card" id="python">
+                    <img src="https://sun9-3.userapi.com/impf/c850220/v850220295/11c7f0/gIzGpnMR5v8.jpg?size=604x394&quality=96&sign=b330b7363fb046f8071cdd9acc68b3cb&type=album" alt="Иероглифовый питон" class="snake-image">
+                    <div class="snake-info">
+                        <h3>Иероглифовый питон <span class="scientific-name">(Python sebae)</span> <span class="danger-level medium">Условно опасно</span></h3>
+                        <p>Иероглифовый питон, также известный как африканский скальный питон, — одна из крупнейших змей в мире. В Танзании эти гиганты обитают вблизи водоемов, так как прекрасно плавают. Их узор из геометрических пятен напоминает древние иероглифы. В отличие от ядовитых змей, питоны убивают добычу путем удушения.</p>
+                    </div>
+                </div>
+                
+                <!-- Коричневая домовая змея -->
+                <div class="snake-card" id="brown-snake">
+                    <img src="https://media.istockphoto.com/id/1596141982/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BA%D0%BE%D1%80%D0%B8%D1%87%D0%BD%D0%B5%D0%B2%D0%B0%D1%8F-%D0%B4%D0%BE%D0%BC%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B7%D0%BC%D0%B5%D1%8F.jpg?s=612x612&w=is&k=20&c=Apf83kMwfQTOfqYBcQcCG5kyNNvQwGb-iBFKkS0UxVg=" alt="Коричневая домовая змея" class="snake-image">
+                    <div class="snake-info">
+                        <h3>Коричневая домовая змея <span class="scientific-name">(Boaedon fuliginosus)</span> <span class="danger-level low">Безопасно</span></h3>
+                        <p>Коричневая домовая змея — частый гость в человеческих жилищах по всей Танзании. Это совершенно безобидная для человека змея, не обладающая ядом. Она охотится на грызунов и ящериц, выполняя полезную функцию. Эти змеи ведут ночной образ жизни и отличаются спокойным нравом.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Боковая панель с фактами -->
+        <div class="facts-sidebar">
+            <div class="fact-card">
+                <h3>Почему нельзя топать рядом со змеёй?</h3>
+                <p>Змеи плохо слышат звуки в воздухе, но прекрасно чувствуют вибрации через землю. Громкие шаги могут быть восприняты как угроза и спровоцировать атаку. Особенно это касается гадюк и других змей, которые полагаются на маскировку.</p>
+            </div>
+            
+            <div class="fact-card">
+                <h3>Как далеко видят змеи?</h3>
+                <p>Большинство змей видят на расстоянии около 1-2 метров. Древесные змеи (как зеленая мамба) имеют лучшее зрение. Ночные виды различают только движение. Питоны и удавы обладают инфракрасным зрением, позволяющим видеть тепло.</p>
+            </div>
+            
+            <div class="fact-card">
+                <h3>Слышат ли змеи?</h3>
+                <p>Змеи не имеют наружных ушей, но чувствуют вибрации через челюстные кости. Они могут "слышать" низкочастотные звуки (до 600 Гц) через землю, но не воспринимают человеческую речь или высокие звуки.</p>
+            </div>
+            
+            <div class="fact-card">
+                <h3>Что делать при встрече со змеёй?</h3>
+                <p>1. Замрите и не делайте резких движений<br>
+                2. Медленно отступайте назад<br>
+                3. Не пытайтесь убить или поймать змею<br>
+                4. Дайте змее путь для отступления<br>
+                5. В случае укуса немедленно обратитесь за помощью</p>
+            </div>
+            
+            <div class="fact-card">
+                <h3>Как определить ядовитую змею?</h3>
+                <p>Основные признаки (но не абсолютные):<br>
+                - Треугольная голова (у многих гадюк)<br>
+                - Вертикальные зрачки (у ночных видов)<br>
+                - Ямки между глаз и ноздрей (у гремучих змей)<br>
+                - Яркая предупреждающая окраска<br>
+                Лучший способ — знать конкретные виды в вашем регионе.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Необязательный скрипт для плавного раскрытия
+        document.querySelector('.toc-sidebar').addEventListener('mouseenter', function() {
+            this.style.width = '250px';
+        });
+        
+        document.querySelector('.toc-sidebar').addEventListener('mouseleave', function() {
+            this.style.width = '50px';
+        });
+    </script>
+</body>
+</html>
