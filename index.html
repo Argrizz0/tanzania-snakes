@@ -1,608 +1,593 @@
-
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PBP0QJMDBC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PBP0QJMDBC');
-</script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Змеи Танзании - Сафари и природа Восточной Африки</title>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PBP0QJMDBC"></script>
+    <title>StickerShop - Купить стикеры</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Основные стили */
-        body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Arial', sans-serif;
+        }
+
+        body {
             line-height: 1.6;
             color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            display: flex;
-            min-height: 100vh;
         }
-        
-        /* Вертикальное оглавление слева (сворачиваемое) */
-        .toc-sidebar {
-            width: 50px;
-            background-color: #2a5c45;
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Шапка */
+        header {
+            background-color: #4CAF50;
             color: white;
-            padding: 20px 5px;
-            height: 100vh;
+            padding: 20px 0;
             position: sticky;
             top: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
             z-index: 100;
         }
-        
-        .toc-sidebar:hover {
-            width: 250px;
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        .toc-sidebar h2 {
-            color: white;
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.2s ease;
+
+        nav ul {
+            display: flex;
+            list-style: none;
         }
-        
-        .toc-sidebar:hover h2 {
-            opacity: 1;
-            transition-delay: 0.1s;
+
+        nav ul li {
+            margin-left: 20px;
         }
-        
-        .toc-list {
-            list-style-type: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-        
-        .toc-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            position: relative;
-        }
-        
-        .toc-sidebar:hover .toc-list li {
-            opacity: 1;
-        }
-        
-        .toc-list a {
+
+        nav ul li a {
             color: white;
             text-decoration: none;
-            display: block;
-            padding: 5px 5px 5px 10px;
-            transition: all 0.3s;
-            border-left: 2px solid transparent;
-            position: relative;
-        }
-        
-        .toc-list a:hover {
-            color: #a3d9b1;
-            border-left: 2px solid #a3d9b1;
-            background: rgba(0,0,0,0.1);
-        }
-        
-        /* Иконка для свернутого состояния */
-        .toc-icon {
-            display: block;
-            text-align: center;
-            font-size: 24px;
-            padding: 10px 0;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .toc-sidebar:hover .toc-icon {
-            transform: rotate(90deg);
-        }
-        
-        /* Основное содержимое */
-        .content-wrapper {
-            display: flex;
-            flex: 1;
-        }
-        
-        .main-content {
-            flex: 2;
-            padding: 20px 40px;
-            max-width: 900px;
-            transition: margin-left 0.3s ease;
-        }
-        
-        /* Боковая панель с фактами */
-        .facts-sidebar {
-            flex: 1;
-            padding: 20px;
-            background-color: #f0f0f0;
-            border-left: 1px solid #ddd;
-            max-width: 300px;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
-        
-        .fact-card {
-            background-color: white;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
-        }
-        
-        .fact-card.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .fact-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transform: translateY(-5px) !important;
-        }
-        
-        .fact-card h3 {
-            color: #2a5c45;
-            margin-top: 0;
-            border-bottom: 2px solid #2a5c45;
-            padding-bottom: 5px;
-            transition: color 0.3s ease;
-        }
-        
-        .fact-card:hover h3 {
-            color: #e74c3c;
-        }
-        
-        /* Главный заголовок */
-        .main-header {
-            text-align: center;
-            padding: 50px 0;
-            margin-bottom: 40px;
-            background-color: #f0f8f0;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            background: linear-gradient(135deg, #f0f8f0 0%, #e0f0e0 100%);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s ease;
-        }
-        
-        .main-header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://images.unsplash.com/photo-1551969014-7d2c4cddf0b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
-            opacity: 0.1;
-            z-index: 0;
-        }
-        
-        .main-header h1 {
-            color: #2a5c45;
-            font-size: 48px;
-            margin: 0;
-            padding: 0;
-            line-height: 1.2;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 1;
-            animation: fadeInDown 1s ease both;
-        }
-        
-        .main-header p {
-            font-size: 24px;
-            color: #555;
-            margin: 20px auto 0;
-            max-width: 700px;
-            line-height: 1.5;
-            font-weight: 300;
-            position: relative;
-            z-index: 1;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-        
-        /* Стили для карточек змей */
-        .snake-section h2 {
-            color: #2a5c45;
-            font-size: 32px;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #2a5c45;
-            animation: fadeIn 1s ease both;
-        }
-        
-        .snake-card {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 40px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.5s ease, box-shadow 0.3s ease;
-        }
-        
-        .snake-card.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .snake-card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            transform: translateY(-5px) !important;
-        }
-        
-        .snake-image {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-            transition: transform 0.5s ease, box-shadow 0.3s ease;
-        }
-        
-        .snake-card:hover .snake-image {
-            transform: scale(1.03);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        .snake-info {
-            flex: 1;
-        }
-        
-        .snake-info h3 {
-            margin-top: 0;
-            color: #2a5c45;
-            font-size: 24px;
-            transition: color 0.3s ease;
-        }
-        
-        .snake-card:hover .snake-info h3 {
-            color: #e74c3c;
-        }
-        
-        .scientific-name {
-            font-style: italic;
-            color: #666;
-            transition: color 0.3s ease;
-        }
-        
-        .snake-card:hover .scientific-name {
-            color: #333;
-        }
-        
-        .danger-level {
-            display: inline-block;
-            padding: 3px 10px;
-            color: white;
-            border-radius: 4px;
-            font-size: 14px;
-            margin-left: 10px;
             font-weight: bold;
-            transition: all 0.3s ease;
         }
-        
-        .danger-level.high {
-            background-color: #e74c3c; /* Красный - очень опасно */
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
         }
-        
-        .danger-level.medium {
-            background-color: #f39c12; /* Оранжевый - опасно */
-        }
-        
-        .danger-level.low {
-            background-color: #2ecc71; /* Зеленый - безопасно */
-        }
-        
-        .snake-card:hover .danger-level {
-            transform: scale(1.1);
-        }
-        
-        /* Анимация задержки для пунктов меню */
-        .toc-list li:nth-child(1) { transition-delay: 0.05s; }
-        .toc-list li:nth-child(2) { transition-delay: 0.1s; }
-        .toc-list li:nth-child(3) { transition-delay: 0.15s; }
-        .toc-list li:nth-child(4) { transition-delay: 0.2s; }
-        .toc-list li:nth-child(5) { transition-delay: 0.25s; }
-        .toc-list li:nth-child(6) { transition-delay: 0.3s; }
-        .toc-list li:nth-child(7) { transition-delay: 0.35s; }
-        .toc-list li:nth-child(8) { transition-delay: 0.4s; }
-        
-        /* Стили для всплывающих подсказок */
-        .toc-list a::after {
-            content: attr(data-title);
+
+        .cart-count {
             position: absolute;
-            left: 100%;
-            top: 0;
-            background: #2a5c45;
+            top: -10px;
+            right: -10px;
+            background-color: red;
             color: white;
-            padding: 5px 15px;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        /* Стикеры */
+        .sticker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sticker-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .sticker-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .sticker-img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background-color: #f9f9f9;
+        }
+
+        .sticker-info {
+            padding: 15px;
+        }
+
+        .sticker-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .sticker-price {
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
             border-radius: 4px;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            margin-left: 10px;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
         }
-        
-        .toc-list a:hover::after {
-            opacity: 1;
+
+        .add-to-cart:hover {
+            background-color: #45a049;
         }
-        
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        /* Корзина */
+        .hidden {
+            display: none;
         }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
+
+        .cart-items {
+            margin: 20px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+            padding: 0 15px;
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item-quantity button {
+            background-color: #ddd;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .cart-item-quantity span {
+            margin: 0 10px;
+        }
+
+        .remove-item {
+            color: red;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        #checkout-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        /* Форма заказа */
+        #checkout-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            nav ul {
+                margin-top: 15px;
             }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+            
+            .sticker-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Анимация для карточек с задержкой */
-        .snake-card:nth-child(1) { transition-delay: 0.1s; }
-        .snake-card:nth-child(2) { transition-delay: 0.2s; }
-        .snake-card:nth-child(3) { transition-delay: 0.3s; }
-        .snake-card:nth-child(4) { transition-delay: 0.4s; }
-        .snake-card:nth-child(5) { transition-delay: 0.5s; }
-        .snake-card:nth-child(6) { transition-delay: 0.6s; }
-        .snake-card:nth-child(7) { transition-delay: 0.7s; }
-        .snake-card:nth-child(8) { transition-delay: 0.8s; }
-        
-        .fact-card:nth-child(1) { transition-delay: 0.2s; }
-        .fact-card:nth-child(2) { transition-delay: 0.4s; }
-        .fact-card:nth-child(3) { transition-delay: 0.6s; }
-        .fact-card:nth-child(4) { transition-delay: 0.8s; }
-        .fact-card:nth-child(5) { transition-delay: 1.0s; }
-        
-        /* Плавное появление при загрузке */
-        @keyframes scaleIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        
-        .content-wrapper {
-            animation: scaleIn 0.8s ease both;
-        }
-        
-        /* Анимация для кнопки меню */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .toc-icon:hover {
-            animation: pulse 1.5s infinite;
         }
     </style>
 </head>
 <body>
-    <!-- Вертикальное оглавление слева с анимацией -->
-    <nav class="toc-sidebar">
-        <div class="toc-icon">☰</div>
-        <h2>Змеи Танзании</h2>
-        <ul class="toc-list">
-            <li><a href="#black-mamba" data-title="Черная мамба">Черная мамба</a></li>
-            <li><a href="#green-mamba" data-title="Восточная зеленая мамба">Восточная зеленая мамба</a></li>
-            <li><a href="#puff-adder" data-title="Африканская шумящая гадюка">Африканская шумящая гадюка</a></li>
-            <li><a href="#boomslang" data-title="Бумеланг">Бумеланг</a></li>
-            <li><a href="#egyptian-cobra" data-title="Египетская кобра">Египетская кобра</a></li>
-            <li><a href="#spitting-cobra" data-title="Черношейная плюющаяся кобра">Черношейная плюющаяся кобра</a></li>
-            <li><a href="#python" data-title="Иероглифовый питон">Иероглифовый питон</a></li>
-            <li><a href="#brown-snake" data-title="Коричневая домовая змея">Коричневая домовая змея</a></li>
-        </ul>
-    </nav>
-
-    <!-- Основное содержимое -->
-    <div class="content-wrapper">
-        <div class="main-content">
-            <header class="main-header">
-                <h1>Змеи Танзании</h1>
-                <p>Исследуйте удивительный мир рептилий Восточной Африки</p>
-            </header>
-
-            <!-- Разделы со змеями -->
-            <section class="snake-section">
-                <h2>Виды змей Танзании</h2>
-                
-                <!-- Черная мамба -->
-                <div class="snake-card" id="black-mamba">
-                    <img src="https://i.pinimg.com/736x/c8/50/b7/c850b7ade7f0c69981876f1c2ad046fb.jpg" alt="Черная мамба" class="snake-image">
-                    <div class="snake-info">
-                        <h3>Черная мамба <span class="scientific-name">(Dendroaspis polylepis)</span> <span class="danger-level high">Очень опасно</span></h3>
-                        <p>Черная мамба — одна из самых опасных змей Африки, известная своей скоростью и агрессивностью. Несмотря на название, ее окраска чаще оливково-серая, а "черной" ее называют из-за цвета внутренней полости рта. Эта змея может развивать скорость до 20 км/ч, что делает ее самой быстрой змеей в мире. Ее яд содержит мощные нейротоксины, которые без своевременного введения антидота приводят к летальному исходу.</p>
-                    </div>
-                </div>
-                
-                <!-- Восточная зеленая мамба -->
-                <div class="snake-card" id="green-mamba">
-                    <img src="https://wallpaper.forfun.com/fetch/b2/b29ef4ab6723988252874e8fbff9672b.jpeg?w=600" alt="Восточная зеленая мамба" class="snake-image">
-                    <div class="snake-info">
-                        <h3>Восточная зеленая мамба <span class="scientific-name">(Dendroaspis angusticeps)</span> <span class="danger-level high">Очень опасно</span></h3>
-                        <p>Восточная зеленая мамба — красивая древесная змея ярко-зеленого цвета, обитающая в прибрежных лесах Восточной Африки. В отличие от своей черной родственницы, она менее агрессивна, но ее яд также чрезвычайно опасен. Эти змеи проводят большую часть жизни на деревьях, где их окраска обеспечивает отличную маскировку среди листвы. Зеленые мамбы питаются преимущественно птицами и мелкими млекопитающими.</p>
-                    </div>
-                </div>
-                
-                <!-- Африканская шумящая гадюка -->
-                <div class="snake-card" id="puff-adder">
-                    <img src="https://i.pinimg.com/736x/a9/86/a4/a986a41ae5a768d5bfe92ca77620ac71.jpg" alt="Африканская шумящая гадюка" class="snake-image">
-                    <div class="snake-info">
-                        <h3>Африканская шумящая гадюка <span class="scientific-name">(Bitis arietans)</span> <span class="danger-level high">Очень опасно</span></h3>
-                        <p>Африканская шумящая гадюка получила свое название за характерное громкое шипение, которое она издает при угрозе. Это одна из самых распространенных ядовитых змей Африки, ответственная за большинство смертельных укусов. Ее толстое тело с геометрическим рисунком делает ее мастером маскировки в сухой траве и кустарниках. Эти гадюки ведут преимущественно ночной образ жизни и охотятся из засады.</p>
-                    </div>
-                </div>
-                
-                <!-- Бумеланг -->
-                <div class="snake-card" id="boomslang">
-                    <img src="https://www.africansnakebiteinstitute.com/wp-content/uploads/2017/09/Boomslang_20_Male_Juvenile_web-600x400.jpg" alt="Бумеланг" class="snake-image">
-                    <div class="snake-info">
-                        <h3>Бумеланг <span class="scientific-name">(Dispholidus typus)</span> <span class="danger-level medium">Опасно</span></h3>
-                        <p>Бумеланг — изящная древесная змея с большими глазами и стройным телом. Ее название происходит от африкаанс и означает "древесная змея". Самцы обычно ярко-зеленые, а самки — коричневатые. Яд бумеланга содержит мощные гемотоксины, разрушающие кровяные тельца и вызывающие внутренние кровотечения.</p>
-                    </div>
-                </div>
-                
-                <!-- Египетская кобра -->
-                <div class="snake-card" id="egyptian-cobra">
-                    <img src="https://www.shorouknews.com/uploadedimages/Other/original/20210508224857884.jpg" alt="Египетская кобра" class="snake-image">
-                    <div class="snake-info">
-                        <h3>Египетская кобра <span class="scientific-name">(Naja haje)</span> <span class="danger-level high">Очень опасно</span></h3>
-                        <p>Египетская кобра — крупная ядовитая змея, известная своим впечатляющим капюшоном, который она раскрывает при угрозе. В Танзании встречается в засушливых регионах и саваннах. Ее яд содержит мощные нейротоксины, парализующие нервную систему жертвы. В древнем Египте эта змея была символом власти и часто изображалась на головных уборах фараонов.</p>
-                    </div>
-                </div>
-                
-                <!-- Черношейная плюющаяся кобра -->
-                <div class="snake-card" id="spitting-cobra">
-                    <img src="https://www.reptilefact.com/wp-content/uploads/2016/08/Naja-Nigricollis.jpg" alt="Черношейная плюющаяся кобра" class="snake-image">
-                    <div class="snake-info">
-                        <h3>Черношейная плюющаяся кобра <span class="scientific-name">(Naja nigricollis)</span> <span class="danger-level medium">Опасно</span></h3>
-                        <p>Черношейная плюющаяся кобра получила свое название за способность выплевывать яд на расстояние до 3 метров, целясь в глаза противника. Эта защитная тактика позволяет ей избегать прямого контакта с потенциальными врагами. При попадании в глаза яд вызывает сильную боль и временную слепоту. Эти кобры распространены по всей Танзании, предпочитая саванны и редколесья.</p>
-                    </div>
-                </div>
-                
-                <!-- Иероглифовый питон -->
-                <div class="snake-card" id="python">
-                    <img src="https://sun9-3.userapi.com/impf/c850220/v850220295/11c7f0/gIzGpnMR5v8.jpg?size=604x394&quality=96&sign=b330b7363fb046f8071cdd9acc68b3cb&type=album" alt="Иероглифовый питон" class="snake-image">
-                    <div class="snake-info">
-                        <h3>Иероглифовый питон <span class="scientific-name">(Python sebae)</span> <span class="danger-level medium">Условно опасно</span></h3>
-                        <p>Иероглифовый питон, также известный как африканский скальный питон, — одна из крупнейших змей в мире. В Танзании эти гиганты обитают вблизи водоемов, так как прекрасно плавают. Их узор из геометрических пятен напоминает древние иероглифы. В отличие от ядовитых змей, питоны убивают добычу путем удушения.</p>
-                    </div>
-                </div>
-                
-                <!-- Коричневая домовая змея -->
-                <div class="snake-card" id="brown-snake">
-                    <img src="https://media.istockphoto.com/id/1596141982/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BA%D0%BE%D1%80%D0%B8%D1%87%D0%BD%D0%B5%D0%B2%D0%B0%D1%8F-%D0%B4%D0%BE%D0%BC%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B7%D0%BC%D0%B5%D1%8F.jpg?s=612x612&w=is&k=20&c=Apf83kMwfQTOfqYBcQcCG5kyNNvQwGb-iBFKkS0UxVg=" alt="Коричневая домовая змея" class="snake-image">
-                    <div class="snake-info">
-                        <h3>Коричневая домовая змея <span class="scientific-name">(Boaedon fuliginosus)</span> <span class="danger-level low">Безопасно</span></h3>
-                        <p>Коричневая домовая змея — частый гость в человеческих жилищах по всей Танзании. Это совершенно безобидная для человека змея, не обладающая ядом. Она охотится на грызунов и ящериц, выполняя полезную функцию. Эти змеи ведут ночной образ жизни и отличаются спокойным нравом.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Боковая панель с фактами -->
-        <div class="facts-sidebar">
-            <div class="fact-card">
-                <h3>Почему нельзя топать рядом со змеёй?</h3>
-                <p>Змеи плохо слышат звуки в воздухе, но прекрасно чувствуют вибрации через землю. Громкие шаги могут быть восприняты как угроза и спровоцировать атаку. Особенно это касается гадюк и других змей, которые полагаются на маскировку.</p>
-            </div>
-            
-            <div class="fact-card">
-                <h3>Как далеко видят змеи?</h3>
-                <p>Большинство змей видят на расстоянии около 1-2 метров. Древесные змеи (как зеленая мамба) имеют лучшее зрение. Ночные виды различают только движение. Питоны и удавы обладают инфракрасным зрением, позволяющим видеть тепло.</p>
-            </div>
-            
-            <div class="fact-card">
-                <h3>Слышат ли змеи?</h3>
-                <p>Змеи не имеют наружных ушей, но чувствуют вибрации через челюстные кости. Они могут "слышать" низкочастотные звуки (до 600 Гц) через землю, но не воспринимают человеческую речь или высокие звуки.</p>
-            </div>
-            
-            <div class="fact-card">
-                <h3>Что делать при встрече со змеёй?</h3>
-                <p>1. Замрите и не делайте резких движений<br>
-                2. Медленно отступайте назад<br>
-                3. Не пытайтесь убить или поймать змею<br>
-                4. Дайте змее путь для отступления<br>
-                5. В случае укуса немедленно обратитесь за помощью</p>
-            </div>
-            
-            <div class="fact-card">
-                <h3>Как определить ядовитую змею?</h3>
-                <p>Основные признаки (но не абсолютные):<br>
-                - Треугольная голова (у многих гадюк)<br>
-                - Вертикальные зрачки (у ночных видов)<br>
-                - Ямки между глаз и ноздрей (у гремучих змей)<br>
-                - Яркая предупреждающая окраска<br>
-                Лучший способ — знать конкретные виды в вашем регионе.</p>
+    <header>
+        <div class="container">
+            <h1>StickerShop</h1>
+            <nav>
+                <ul>
+                    <li><a href="#shop">Магазин</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
             </div>
         </div>
-    </div>
+    </header>
+
+    <main class="container">
+        <section id="shop">
+            <h2>Наши стикеры</h2>
+            <div class="sticker-grid" id="sticker-container">
+                <!-- Стикеры будут загружены через JavaScript -->
+            </div>
+        </section>
+
+        <section id="cart" class="hidden">
+            <h2>Ваша корзина</h2>
+            <div class="cart-items" id="cart-items">
+                <!-- Товары в корзине -->
+            </div>
+            <div class="cart-total">
+                <p>Итого: <span id="total-price">0</span> руб.</p>
+                <button id="checkout-btn">Оформить заказ</button>
+            </div>
+        </section>
+
+        <section id="checkout-form" class="hidden">
+            <h2>Оформление заказа</h2>
+            <form id="order-form">
+                <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон:</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Адрес:</label>
+                    <textarea id="address" required></textarea>
+                </div>
+                <button type="submit">Подтвердить заказ</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 StickerShop. Все права защищены.</p>
+        </div>
+    </footer>
 
     <script>
-        // Необязательный скрипт для плавного раскрытия
-        document.querySelector('.toc-sidebar').addEventListener('mouseenter', function() {
-            this.style.width = '250px';
+        // Данные о стикерах
+        const stickers = [
+            {
+                id: 1,
+                title: "Котик",
+                price: 150,
+                image: "https://via.placeholder.com/300/09f/fff.png?text=Cat"
+            },
+            {
+                id: 2,
+                title: "Собака",
+                price: 200,
+                image: "https://via.placeholder.com/300/09f/fff.png?text=Dog"
+            },
+            {
+                id: 3,
+                title: "Панда",
+                price: 180,
+                image: "https://via.placeholder.com/300/09f/fff.png?text=Panda"
+            },
+            {
+                id: 4,
+                title: "Единорог",
+                price: 250,
+                image: "https://via.placeholder.com/300/09f/fff.png?text=Unicorn"
+            },
+            {
+                id: 5,
+                title: "Динозавр",
+                price: 170,
+                image: "https://via.placeholder.com/300/09f/fff.png?text=Dino"
+            },
+            {
+                id: 6,
+                title: "Лиса",
+                price: 190,
+                image: "https://via.placeholder.com/300/09f/fff.png?text=Fox"
+            }
+        ];
+
+        // Корзина
+        let cart = [];
+
+        // DOM элементы
+        const stickerContainer = document.getElementById('sticker-container');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalPriceElement = document.getElementById('total-price');
+        const cartCountElement = document.querySelector('.cart-count');
+        const cartSection = document.getElementById('cart');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const checkoutFormSection = document.getElementById('checkout-form');
+        const orderForm = document.getElementById('order-form');
+        const cartIcon = document.querySelector('.cart-icon');
+
+        // Загрузка страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            renderStickers();
+            loadCartFromStorage();
+            updateCartUI();
         });
-        
-        document.querySelector('.toc-sidebar').addEventListener('mouseleave', function() {
-            this.style.width = '50px';
-        });
-        
-        // Анимация появления элементов при прокрутке
-        document.addEventListener('DOMContentLoaded', function() {
-            const animateOnScroll = function() {
-                const snakeCards = document.querySelectorAll('.snake-card');
-                const factCards = document.querySelectorAll('.fact-card');
-                
-                snakeCards.forEach((card, index) => {
-                    const cardPosition = card.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.3;
-                    
-                    if (cardPosition < screenPosition) {
-                        card.classList.add('visible');
-                    }
+
+        // Рендер стикеров
+        function renderStickers() {
+            stickerContainer.innerHTML = '';
+            stickers.forEach(sticker => {
+                const stickerElement = document.createElement('div');
+                stickerElement.className = 'sticker-card';
+                stickerElement.innerHTML = `
+                    <img src="${sticker.image}" alt="${sticker.title}" class="sticker-img">
+                    <div class="sticker-info">
+                        <h3 class="sticker-title">${sticker.title}</h3>
+                        <p class="sticker-price">${sticker.price} руб.</p>
+                        <button class="add-to-cart" data-id="${sticker.id}">Добавить в корзину</button>
+                    </div>
+                `;
+                stickerContainer.appendChild(stickerElement);
+            });
+
+            // Добавление обработчиков событий для кнопок
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+        }
+
+        // Добавление в корзину
+        function addToCart(e) {
+            const stickerId = parseInt(e.target.getAttribute('data-id'));
+            const sticker = stickers.find(item => item.id === stickerId);
+            
+            const existingItem = cart.find(item => item.id === stickerId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...sticker,
+                    quantity: 1
+                });
+            }
+            
+            saveCartToStorage();
+            updateCartUI();
+        }
+
+        // Обновление UI корзины
+        function updateCartUI() {
+            // Обновление счетчика
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            
+            // Обновление списка товаров в корзине
+            cartItemsContainer.innerHTML = '';
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Корзина пуста</p>';
+            } else {
+                cart.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}">
+                        <div class="cart-item-info">
+                            <h4>${item.title}</h4>
+                            <p class="cart-item-price">${item.price} руб.</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="decrease-quantity" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="increase-quantity" data-id="${item.id}">+</button>
+                        </div>
+                        <span class="remove-item" data-id="${item.id}">&times;</span>
+                    `;
+                    cartItemsContainer.appendChild(cartItemElement);
                 });
                 
-                factCards.forEach((card, index) => {
-                    const cardPosition = card.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.3;
-                    
-                    if (cardPosition < screenPosition) {
-                        card.classList.add('visible');
-                    }
+                // Добавление обработчиков для кнопок в корзине
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', decreaseQuantity);
                 });
+                
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', increaseQuantity);
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', removeItem);
+                });
+            }
+            
+            // Обновление общей суммы
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            totalPriceElement.textContent = totalPrice;
+        }
+
+        // Уменьшение количества
+        function decreaseQuantity(e) {
+            const stickerId = parseInt(e.target.getAttribute('data-id'));
+            const item = cart.find(item => item.id === stickerId);
+            
+            if (item.quantity > 1) {
+                item.quantity -= 1;
+            } else {
+                cart = cart.filter(item => item.id !== stickerId);
+            }
+            
+            saveCartToStorage();
+            updateCartUI();
+        }
+
+        // Увеличение количества
+        function increaseQuantity(e) {
+            const stickerId = parseInt(e.target.getAttribute('data-id'));
+            const item = cart.find(item => item.id === stickerId);
+            item.quantity += 1;
+            
+            saveCartToStorage();
+            updateCartUI();
+        }
+
+        // Удаление товара
+        function removeItem(e) {
+            const stickerId = parseInt(e.target.getAttribute('data-id'));
+            cart = cart.filter(item => item.id !== stickerId);
+            
+            saveCartToStorage();
+            updateCartUI();
+        }
+
+        // Сохранение корзины в localStorage
+        function saveCartToStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Загрузка корзины из localStorage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+        }
+
+        // Переключение видимости корзины
+        cartIcon.addEventListener('click', () => {
+            cartSection.classList.toggle('hidden');
+            checkoutFormSection.classList.add('hidden');
+        });
+
+        // Оформление заказа
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Корзина пуста!');
+                return;
+            }
+            
+            cartSection.classList.add('hidden');
+            checkoutFormSection.classList.remove('hidden');
+        });
+
+        // Отправка формы заказа
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            
+            const order = {
+                customer: { name, email, phone, address },
+                items: cart,
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                date: new Date().toISOString()
             };
             
-            window.addEventListener('scroll', animateOnScroll);
-            animateOnScroll(); // Вызываем сразу для видимых элементов
+            // В реальном приложении здесь должна быть отправка данных на сервер
+            // Для примера просто выводим в консоль и показываем сообщение
+            console.log('Order submitted:', order);
             
-            // Анимация иконки меню
-            const tocIcon = document.querySelector('.toc-icon');
-            tocIcon.addEventListener('click', function() {
-                this.style.animation = 'pulse 0.5s ease';
-                setTimeout(() => {
-                    this.style.animation = '';
-                }, 500);
-            });
+            // Эмуляция отправки на сервер
+            setTimeout(() => {
+                alert(`Заказ успешно оформлен! Номер вашего заказа: STK-${Date.now().toString().slice(-6)}\nИтого: ${order.total} руб.`);
+                
+                // Очистка корзины
+                cart = [];
+                saveCartToStorage();
+                updateCartUI();
+                
+                // Скрытие формы
+                checkoutFormSection.classList.add('hidden');
+                
+                // Очистка формы
+                orderForm.reset();
+            }, 1000);
         });
     </script>
 </body>
